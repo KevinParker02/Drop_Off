@@ -1,31 +1,31 @@
-import csv
+import json
 import os
 from datetime import datetime
 
+FILE = "infractions.json"
+
+
 def save_infraction(plate):
 
-    file_exists = os.path.exists("infracciones.csv")
+    # nueva infracción
+    infraction = {
+        "plate": plate,
+        "time": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
 
-    with open(
-        "infracciones.csv",
-        "a",
-        newline="",
-        encoding="utf-8"
-    ) as file:
+    # cargar datos existentes
+    if os.path.exists(FILE):
+        try:
+            with open(FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except json.JSONDecodeError:
+            data = []
+    else:
+        data = []
 
-        writer = csv.writer(file)
+    # agregar nueva
+    data.append(infraction)
 
-        if not file_exists:
-            writer.writerow([
-                "fecha",
-                "hora",
-                "patente"
-            ])
-
-        now = datetime.now()
-
-        writer.writerow([
-            now.strftime("%Y-%m-%d"),
-            now.strftime("%H:%M:%S"),
-            plate
-        ])
+    # guardar todo
+    with open(FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
