@@ -1,0 +1,48 @@
+# Entorno virtual
+venv/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.tmp
+*.log
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Resultados de PyInstaller
+build/
+dist/
+*.spec
+
+# Archivos generados por el proyecto
+infracciones.csv
+
+# Modelos grandes (si agregas alguno)
+models/*.pt
+models/*.onnx
+
+# Imágenes de prueba locales
+data/test.jpg
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Cache de EasyOCR y Torch
+.cache/
+torch_cache/
+
+# Archivos de sistema
+.DS_Store
