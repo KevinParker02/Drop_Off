@@ -1,5 +1,6 @@
 import cv2
 import easyocr
+import re
 
 reader = easyocr.Reader(['en'])
 
@@ -20,9 +21,22 @@ def detect_plate(frame):
         interpolation=cv2.INTER_CUBIC
     )
 
-    results = reader.readtext(roi)
+    results = reader.readtext(
+        roi,
+        allowlist="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    )
 
     if results:
-        return results[0][1]
+
+        plate = results[0][1].upper()
+
+        # Eliminar cualquier carácter que no sea letra o número
+        plate = re.sub(
+            r'[^A-Z0-9]',
+            '',
+            plate
+        )
+
+        return plate
 
     return None
