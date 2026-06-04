@@ -274,8 +274,8 @@ class App:
 
                 messagebox.showwarning(
                     "DROP OFF",
-                    f"Patente: {self.plate}\n\n"
-                    f"Infracción registrada."
+                    f"Patente: {self.plate}\n\n más de 5 minutos estacionada"
+                    f"Infracción registrada y notificado al correo del apoderado."
                 )
 
                 self.alert_sent = True
