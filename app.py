@@ -18,6 +18,13 @@ from detector import detect_plate
 from tracker import VehicleTracker
 from logger import save_infraction
 
+import torch
+
+print("CUDA disponible:", torch.cuda.is_available())
+
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+
 # ─────────────────────────────────────────────
 #  TEMA
 # ─────────────────────────────────────────────
@@ -453,7 +460,7 @@ class App(ctk.CTk):
         except ValueError:
             idx = 0
 
-        self.cap = cv2.VideoCapture(idx)
+        self.cap = cv2.VideoCapture(idx, cv2.CAP_DSHOW)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH,  1280)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         self.cap.set(cv2.CAP_PROP_FPS, 30)
