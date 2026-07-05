@@ -86,15 +86,19 @@ El objetivo principal es optimizar el flujo vehicular, reducir la congestión y 
 ## 🚀 Instalación y Ejecución
 
 1. Crear un entorno virtual (python -m venv venv)
-2. Activa el entorno virtual (venv\Scripts\activate)
+2. Activa el entorno virtual (venv\Scripts\Activate.ps1)
 3. Instalas los requerimiento (pip install -r requirements.txt)
-3.1 Instalar PyTorch según la GPU disponible:
-    a.NVIDIA CUDA:
-        pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
-    b.CPU:
-        pip install torch torchvision
+3.1 Coloca la fuente de cada cámara simulada. Puede ser un VIDEO o una
+IMAGEN fija (por ejemplo, para probar rápidamente la lectura OCR sin
+necesitar un video real):
 
-4. Corres el programa con (python app.py)
+  camera1.mp4  (o camera1.jpg / .png)   -> fuente para el panel "Cámara 1"
+  camera2.mp4  (o camera2.jpg / .png)   -> fuente para el panel "Cámara 2"
+
+Extensiones de video soportadas: .mp4, .avi, .mov, .mkv
+Extensiones de imagen soportadas: .jpg, .jpeg, .png, .bmp
+
+4. Corres el programa con (python main.py)
 
 ## 📦 Dependencias Principales
 
