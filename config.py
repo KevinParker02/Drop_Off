@@ -33,8 +33,15 @@ RECORDS_FILE = os.path.join(BASE_DIR, "dashboard_records.json")
 # Umbral de tiempo detenido (segundos) para considerar "Pasado de tiempo"
 TIME_THRESHOLD_SECONDS = 5.0
 
-# Tiempo (segundos) sin ver la patente para considerar que el vehículo se retiró
-GRACE_PERIOD_SECONDS = 1.5
+# Tiempo (segundos) sin ver la patente para considerar que el vehículo se retiró.
+# IMPORTANTE: debe ser bastante mayor que el tiempo real que tarda EasyOCR en
+# volver a leer la MISMA patente. En CPU, cada lectura puede tardar 1-3 segundos
+# o más (depende del hardware). Si este valor es muy chico, un vehículo que
+# sigue detenido se marca erróneamente como "retirado" entre una lectura y la
+# siguiente, y se vuelve a registrar como si fuera un vehículo nuevo cada vez
+# que el OCR lo lee de nuevo (síntoma: la misma patente aparece repetida muchas
+# veces en el dashboard en pocos segundos).
+GRACE_PERIOD_SECONDS = 4.0
 
 # Cada cuántos frames se corre el OCR (para no saturar la CPU)
 OCR_EVERY_N_FRAMES = 8
